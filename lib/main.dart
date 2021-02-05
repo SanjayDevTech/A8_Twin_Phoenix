@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:resume_generator/main_route.dart';
 
 void main() {
   runApp(ResumeGeneratorApp());
 }
+
+final Map<String, WidgetBuilder> routes = {
+  '/': (context) => MainScreen(),
+};
 
 class ResumeGeneratorApp extends StatelessWidget {
   @override
@@ -12,9 +17,8 @@ class ResumeGeneratorApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Container(
-        child: Text('Hello Flutter'),
-      ),
+      routes: routes,
+      initialRoute: '/',
     );
   }
 }
