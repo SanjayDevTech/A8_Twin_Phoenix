@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resume_generator/forms/personal_entry.dart';
 
 class PersonalInfoScreen extends StatelessWidget {
   final _actionTitles = [
@@ -31,8 +32,21 @@ class PersonalInfoScreen extends StatelessWidget {
     Icons.link
   ];
 
-  Widget _buildAction(
-      BuildContext context, String title, String key, IconData icon) {
+  final _actionModals = [
+    (context) => PersonalEntryForm((_, __, ___, ____) => {}),
+    (context) => PersonalEntryForm((_, __, ___, ____) => {}),
+    (context) => PersonalEntryForm((_, __, ___, ____) => {}),
+    (context) => PersonalEntryForm((_, __, ___, ____) => {}),
+    (context) => PersonalEntryForm((_, __, ___, ____) => {}),
+    (context) => PersonalEntryForm((_, __, ___, ____) => {}),
+    (context) => PersonalEntryForm((_, __, ___, ____) => {}),
+  ];
+
+  Widget _buildAction(BuildContext context, int index) {
+    final title = _actionTitles[index];
+    final key = _actionKeys[index];
+    final icon = _actionIcons[index];
+    final modal = _actionModals[index];
     return Center(
       child: SizedBox(
         height: 80,
@@ -41,7 +55,12 @@ class PersonalInfoScreen extends StatelessWidget {
           elevation: 6,
           child: InkWell(
             onTap: () {
-              Navigator.pushNamed(context, '/$key');
+              showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                        title: Text(title),
+                        content: modal(context),
+                      ));
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -78,12 +97,7 @@ class PersonalInfoScreen extends StatelessWidget {
       ),
       body: ListView.builder(
         itemCount: 7,
-        itemBuilder: (context, index) => _buildAction(
-          context,
-          _actionTitles[index],
-          _actionKeys[index],
-          _actionIcons[index],
-        ),
+        itemBuilder: (context, index) => _buildAction(context, index),
       ),
     );
   }

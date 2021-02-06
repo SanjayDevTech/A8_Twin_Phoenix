@@ -13,10 +13,14 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   flutter_svg: ^0.20.0-nullsafety.3
+  floor: ^1.0.0-nullsafety.0
+  provider: ^5.0.0-nullsafety.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  floor_generator: ^1.0.0-nullsafety.0
+  build_runner: ^1.10.3
 
 flutter:
   uses-material-design: true

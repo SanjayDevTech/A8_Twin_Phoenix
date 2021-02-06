@@ -11,7 +11,7 @@ class MainScreen extends StatelessWidget {
     'personal_info.png',
     'personal_info.png'
   ];
-  final _actionKeys = ['personal_info', 'create_resumes', 'saved_resumes'];
+  final _actionKeys = ['personal_bio_list', 'create_resumes', 'saved_resumes'];
 
   Widget _buildAction(
       BuildContext context, String title, String image, String key) {
