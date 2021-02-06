@@ -37,6 +37,8 @@ class PersonalEntryForm extends StatelessWidget {
             style: TextStyle(fontSize: 20),
           ),
           TextFormField(
+            keyboardType: TextInputType.multiline,
+            maxLines: null,
             controller: _addrTextController,
             decoration: InputDecoration(hintText: 'Address here'),
             style: TextStyle(fontSize: 20),

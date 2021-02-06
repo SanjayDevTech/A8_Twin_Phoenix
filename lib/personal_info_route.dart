@@ -42,6 +42,10 @@ class PersonalInfoScreen extends StatelessWidget {
     (context) => PersonalEntryForm((_, __, ___, ____) => {}),
   ];
 
+  final int? bioId;
+
+  PersonalInfoScreen({this.bioId});
+
   Widget _buildAction(BuildContext context, int index) {
     final title = _actionTitles[index];
     final key = _actionKeys[index];
@@ -95,9 +99,18 @@ class PersonalInfoScreen extends StatelessWidget {
         brightness: Brightness.dark,
         title: Text('Personal Info'),
       ),
-      body: ListView.builder(
-        itemCount: 7,
-        itemBuilder: (context, index) => _buildAction(context, index),
+      body: Column(
+        children: [
+          ListView.builder(
+            itemCount: 7,
+            itemBuilder: (context, index) => _buildAction(context, index),
+          ),
+          TextButton.icon(
+            onPressed: () {},
+            icon: Icon(Icons.save),
+            label: Text(bioId == null ? 'Add' : 'Save'),
+          )
+        ],
       ),
     );
   }

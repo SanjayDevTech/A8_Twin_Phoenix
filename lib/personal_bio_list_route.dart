@@ -12,7 +12,7 @@ class PersonalBioListScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         brightness: Brightness.dark,
-        title: Text('Add / Edit Bios'),
+        title: Text('Multiple Bios'),
       ),
       body: _buildBody(bioDao),
       floatingActionButton: FloatingActionButton(
