@@ -22,11 +22,11 @@ class $FloorAppDatabase {
 class _$AppDatabaseBuilder {
   _$AppDatabaseBuilder(this.name);
 
-  final String? name;
+  final String name;
 
   final List<Migration> _migrations = [];
 
-  Callback? _callback;
+  Callback _callback;
 
   /// Adds migrations to the builder.
   _$AppDatabaseBuilder addMigrations(List<Migration> migrations) {
@@ -43,7 +43,7 @@ class _$AppDatabaseBuilder {
   /// Creates the database and initializes it.
   Future<AppDatabase> build() async {
     final path = name != null
-        ? await sqfliteDatabaseFactory.getDatabasePath(name!)
+        ? await sqfliteDatabaseFactory.getDatabasePath(name)
         : ':memory:';
     final database = _$AppDatabase();
     database.database = await database.open(
@@ -56,14 +56,14 @@ class _$AppDatabaseBuilder {
 }
 
 class _$AppDatabase extends AppDatabase {
-  _$AppDatabase([StreamController<String>? listener]) {
+  _$AppDatabase([StreamController<String> listener]) {
     changeListener = listener ?? StreamController<String>.broadcast();
   }
 
-  BioDao? _bioDaoInstance;
+  BioDao _bioDaoInstance;
 
   Future<sqflite.Database> open(String path, List<Migration> migrations,
-      [Callback? callback]) async {
+      [Callback callback]) async {
     final databaseOptions = sqflite.OpenDatabaseOptions(
       version: 1,
       onConfigure: (database) async {
@@ -80,7 +80,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Bio` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `personal` TEXT NOT NULL, `educations` TEXT NOT NULL, `experiences` TEXT NOT NULL, `skills` TEXT NOT NULL, `interests` TEXT NOT NULL, `achievements` TEXT NOT NULL, `links` TEXT NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `Bio` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `personal` TEXT, `educations` TEXT, `experiences` TEXT, `skills` TEXT, `interests` TEXT, `achievements` TEXT, `links` TEXT)');
 
         await callback?.onCreate?.call(database, version);
       },

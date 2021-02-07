@@ -18,9 +18,10 @@ part 'app_database.g.dart';
 ])
 abstract class AppDatabase extends FloorDatabase {
   BioDao get bioDao;
-  static final AppDatabase? _instance = null;
+  static final AppDatabase _instance = null;
   static Future<AppDatabase> get instance async {
-    return _instance ??
-        await $FloorAppDatabase.databaseBuilder('app_database.db').build();
+    return _instance != null
+        ? _instance
+        : await $FloorAppDatabase.databaseBuilder('app_database.db').build();
   }
 }

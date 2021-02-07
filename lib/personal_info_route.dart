@@ -42,7 +42,7 @@ class PersonalInfoScreen extends StatelessWidget {
     (context) => PersonalEntryForm((_, __, ___, ____) => {}),
   ];
 
-  final int? bioId;
+  final int bioId;
 
   PersonalInfoScreen({this.bioId});
 

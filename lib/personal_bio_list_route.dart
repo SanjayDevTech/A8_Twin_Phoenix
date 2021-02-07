@@ -30,7 +30,7 @@ class PersonalBioListScreen extends StatelessWidget {
       stream: bioDao.findAllBios(),
       builder: (BuildContext context, AsyncSnapshot<List<Bio>> snapshot) {
         if (snapshot.hasData) {
-          final bioList = snapshot.data!;
+          final bioList = snapshot.data;
           if (bioList.isEmpty)
             return Center(
               child: Text(
